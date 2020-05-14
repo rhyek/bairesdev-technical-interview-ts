@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-import { spacing } from '../consts/general';
-import { AlbumArtDto } from '../models/AlbumArtDto';
-import Album from './Album';
+import React, { useState, useMemo, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import { spacing } from "../consts/general";
+import { AlbumArtDto } from "../models/AlbumArtDto";
+import Album from "./Album";
 
 const Title = styled.h1`
   padding: ${spacing}px;
@@ -57,13 +57,13 @@ const AlbumList = styled.ul`
 
 export default function Albums() {
   const [albumArts, setAlbumArts] = useState<AlbumArtDto[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.get(
-          'https://jsonplaceholder.typicode.com/photos'
+          "https://jsonplaceholder.typicode.com/photos"
         );
         setAlbumArts(data);
         setLoading(false);
@@ -90,7 +90,7 @@ export default function Albums() {
       return parseInt(b) - parseInt(a);
     });
     const firstThree = sortedKeys.slice(0, 3);
-    console.log('sorted keys', firstThree);
+    console.log("sorted keys", firstThree);
     const lastAlbums: Record<string, AlbumArtDto[]> = {};
     for (const id of firstThree) {
       lastAlbums[id] = albums[id];
@@ -112,7 +112,7 @@ export default function Albums() {
     return shortened;
   }, [lastThreeAlbums]);
 
-  const colors = ['green', 'blue', 'purple'];
+  const colors = ["green", "blue", "purple"];
 
   if (loading) {
     return <div>Loading...</div>;
